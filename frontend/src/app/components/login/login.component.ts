@@ -4,11 +4,10 @@ import { LoginService } from './login.service';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgIf } from '@angular/common';
-import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, FormsModule, NgIf, OtpVerificationComponent],
+  imports: [RouterLink, FormsModule, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -36,18 +35,18 @@ export class LoginComponent {
     }
     this.loginService
       .verifyCredentials(this.enteredEmail, this.enteredPassword)
-      .then((responce) => {
-        if (responce === 'OTP code sent') {
+      .then((response) => {
+        if (response === 'welcome') {
           this.toastr.success(
-            `OTP Sent to ${this.enteredEmail} `,
-            'Verify OTP',
+            'Login successful!',
+            'Welcome',
             {
               positionClass: 'toast-bottom-right',
             }
           );
-          this.otpFormStatus = true;
+          this.router.navigate(['/dashboard']);
         } else {
-          this.toastr.error('Invalid credentials', 'login failed', {
+          this.toastr.error('Invalid credentials', 'Login failed', {
             positionClass: 'toast-bottom-right',
           });
         }
