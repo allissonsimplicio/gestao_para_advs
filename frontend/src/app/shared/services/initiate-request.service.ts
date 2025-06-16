@@ -19,7 +19,7 @@ export class InitiateRequestService {
   async getTokenFromSanctum() {
     this.xsrfToken
       ? null
-      : await fetch('http://localhost:8000/sanctum/csrf-cookie', {
+      : await fetch('http://localhost:12000/sanctum/csrf-cookie', {
           method: 'GET',
           credentials: 'include',
         });
