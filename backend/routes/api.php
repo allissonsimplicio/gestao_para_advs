@@ -113,9 +113,7 @@ Route::get('/payments-with-invoices-with-clients', [App\Http\Controllers\Payment
 //invoices
 Route::apiResource('invoices', controller: App\Http\Controllers\InvoiceController::class);
 
-Route::post('/verify-otp',  [AuthenticatedSessionController::class, 'verificationOtp'])
-    ->middleware('guest')
-    ->name('verification.otp');
+// OTP verification removed - direct login enabled
 
 //client-with-invoices
 Route::get('/clients-with-invoices', [ClientsController::class, 'getClientsWithInvoices']);
