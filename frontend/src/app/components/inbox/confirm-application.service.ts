@@ -15,7 +15,7 @@ export class ConfirmApplicationService {
     private spinner: NgxSpinnerService
   ) {}
 
-  api = 'http://localhost:8000/api/Guest-Application';
+  api = 'http://localhost:12000/api/Guest-Application';
 
   getAllApplications() {
     this.spinner.show();
