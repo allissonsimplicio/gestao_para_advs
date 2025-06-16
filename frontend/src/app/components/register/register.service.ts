@@ -17,9 +17,9 @@ export class RegisterService {
     password: string;
     password_confirmation: string;
   }) {
-    const api = 'http://localhost:8000/register';
+    const api = 'http://localhost:12000/api/register';
 
-    const token = await fetch('http://localhost:8000/sanctum/csrf-cookie', {
+    const token = await fetch('http://localhost:12000/sanctum/csrf-cookie', {
       method: 'GET',
       credentials: 'include',
     });
