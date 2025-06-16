@@ -33,7 +33,7 @@ export class ConfirmApplicationService {
   sendResponse(mailData: { email: string; message: string }) {
     this.toaster.show();
     return this.http
-      .post('http://127.0.0.1:8000/api/confirm-application', mailData)
+      .post('http://localhost:12000/api/confirm-application', mailData)
       .pipe(finalize(() => this.spinner.hide));
   }
 }
