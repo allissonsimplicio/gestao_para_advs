@@ -33,7 +33,7 @@ export class LoginService {
   }
 
   async verifyCredentials(email: string, password: string): Promise<any> {
-    const api = 'http://localhost:8000/login';
+    const api = 'http://localhost:12000/api/login';
     this.spinner.show();
     try {
       const response = await fetch(api, {
@@ -49,9 +49,11 @@ export class LoginService {
       const data = await response.json();
       this.spinner.hide();
 
-      if (data.message === 'OTP code sent') {
-        this.otpStatus.next(true);
-        return 'OTP code sent';
+      if (data.access_token) {
+        this.token = data.access_token;
+        sessionStorage.setItem('access_token', this.token!);
+        this.loginStatus.next(true);
+        return 'welcome';
       } else {
         this.otpStatus.next(false);
         return data;
@@ -73,7 +75,7 @@ export class LoginService {
   }
 
   async verifyOtp(email: string, password: string, otp: string): Promise<any> {
-    const api = 'http://127.0.0.1:8000/api/verify-otp';
+    const api = 'http://localhost:12000/api/verify-otp';
     try {
       const response = await fetch(api, {
         method: 'POST',
